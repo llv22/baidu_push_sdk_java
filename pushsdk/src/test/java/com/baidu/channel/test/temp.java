@@ -8,7 +8,7 @@ import com.baidu.yun.core.utility.StringUtility;
 public class temp {
 
     public static void main(String[] args) {
-        String ts = "10995021999621778018";
+    	// String ts = "10995021999621778018";
         // Long v = Long.parseLong(ts);
         // System.out.println(v);
 

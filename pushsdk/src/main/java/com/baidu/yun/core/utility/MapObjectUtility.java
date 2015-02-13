@@ -16,21 +16,23 @@ import com.baidu.yun.core.annotation.JSonPath;
 
 public class MapObjectUtility {
 
-    public static void convertMap2Object(Object obj, Map map) {
+    public static void convertMap2Object(Object obj, Map<?, ?> map) {
 
     }
 
-    public static void convertMap2ObjectWithJson(Object obj, Map map) {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public static void convertMap2ObjectWithJson(Object obj, Map<?, ?> map) {
 
         Field[] fields = obj.getClass().getDeclaredFields();
         for (Field field : fields) {
             try {
                 field.setAccessible(true);
                 if (field.isAnnotationPresent(JSonPath.class)) {
-                    Object fobj = field.get(obj);
+                    @SuppressWarnings("unused")
+					Object fobj = field.get(obj);
                     JSonPath annotation = field.getAnnotation(JSonPath.class);
 
-                    Class zlass = field.getType();
+                    Class<?> zlass = field.getType();
                     Object jsonObj = queryJsonPathInMap(map, annotation.path());
                     if (jsonObj == null) {
                         continue;
@@ -61,8 +63,7 @@ public class MapObjectUtility {
                         field.set(obj, os);
                     } else if (zlass.equals(java.util.List.class)
                             && jsonObj instanceof java.util.List) {
-                        @SuppressWarnings("rawtypes")
-                        List list = (List) field.get(obj);
+                        List<Object> list = (List) field.get(obj);
                         ;
                         Type type = field.getGenericType();
                         if (type instanceof ParameterizedType) {
@@ -70,7 +71,7 @@ public class MapObjectUtility {
                             Type[] types = ptype.getActualTypeArguments();
                             if (types.length == 1) {
                                 if (types[0].equals(Integer.class)) {
-                                    Class elass = queryListGenericClass(jsonObj);
+									Class<? extends Object> elass = queryListGenericClass(jsonObj);
                                     if (elass.equals(Integer.class)
                                             || elass.equals(Long.class)) {
                                         list.addAll((Collection) jsonObj);
@@ -138,7 +139,7 @@ public class MapObjectUtility {
 
     }
 
-    private static Object queryJsonPathInMap(Map map, String path) {
+    private static Object queryJsonPathInMap(Map<?, ?> map, String path) {
 
         Object obj = map;
         String[] segs = path.split("\\\\");
@@ -148,14 +149,14 @@ public class MapObjectUtility {
                 return null;
             if (segs[i].length() > 0) {
                 if (obj instanceof Map) {
-                    Map curMap = (Map) obj;
+                    Map<?, ?> curMap = (Map<?, ?>) obj;
                     obj = curMap.get(segs[i]);
                 } else if (obj instanceof List) {
-                    List curList = (List) obj;
+                    List<?> curList = (List<?>) obj;
                     obj = null;
                     for (Object o : curList) {
                         if (o instanceof Map) {
-                            if (((Map) o).containsKey(segs[i])) {
+                            if (((Map<?, ?>) o).containsKey(segs[i])) {
                                 obj = o;
                                 break;
                             }
@@ -170,9 +171,9 @@ public class MapObjectUtility {
 
     }
 
-    private static Class queryListGenericClass(Object obj) {
+    private static Class<? extends Object> queryListGenericClass(Object obj) {
         if (obj instanceof java.util.List) {
-            List lobj = (List) obj;
+            List<?> lobj = (List<?>) obj;
             if (lobj.size() > 0) {
                 return lobj.get(0).getClass();
             }
@@ -182,7 +183,7 @@ public class MapObjectUtility {
 
     private static boolean isGenericClassMap(Object obj) {
         if (obj instanceof java.util.List) {
-            List lobj = (List) obj;
+            List<?> lobj = (List<?>) obj;
             if (lobj.size() > 0) {
                 return lobj.get(0) instanceof java.util.Map;
             }

@@ -28,7 +28,8 @@ public class TransformUtilitiy {
                 if (field.isAnnotationPresent(HttpPathKeyName.class)) {
                     Object obj = field.get(request);
                     if (obj != null) {
-                        HttpPathKeyName annotation = field
+                        @SuppressWarnings("unused")
+						HttpPathKeyName annotation = field
                                 .getAnnotation(HttpPathKeyName.class);
                         // resurl = resurl + obj.toString();
                         return obj.toString();

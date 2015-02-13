@@ -14,14 +14,15 @@ public class JSONParser implements JSONParserConstants {
         this(new StringReader(""));
     }
 
-    public Map parser(String json) throws ParseException {
+    public Map<String, Object> parser(String json) throws ParseException {
         ReInit(new StringReader(json));
         return object();
     }
 
     /** */
-    final public Map object() throws ParseException {
-        Map map = new HashMap();
+    @SuppressWarnings("unused")
+	final public Map<String, Object> object() throws ParseException {
+        HashMap<String, Object> map = new HashMap<String, Object>();
         String key;
         Object value;
         jj_consume_token(18);
@@ -61,7 +62,8 @@ public class JSONParser implements JSONParserConstants {
     }
 
     /** */
-    final public String key() throws ParseException {
+    @SuppressWarnings("unused")
+	final public String key() throws ParseException {
         Token t;
         String value;
         switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
@@ -88,7 +90,8 @@ public class JSONParser implements JSONParserConstants {
     }
 
     /** */
-    final public Number number() throws ParseException {
+    @SuppressWarnings("unused")
+	final public Number number() throws ParseException {
         Token t;
         switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
         case INTEGER_LITERAL:
@@ -130,7 +133,8 @@ public class JSONParser implements JSONParserConstants {
     }
 
     /** */
-    final public String string() throws ParseException {
+    @SuppressWarnings("unused")
+	final public String string() throws ParseException {
         Token t;
         t = jj_consume_token(STRING_LITERAL);
         {
@@ -141,7 +145,8 @@ public class JSONParser implements JSONParserConstants {
     }
 
     /** */
-    final public Object value() throws ParseException {
+    @SuppressWarnings("unused")
+	final public Object value() throws ParseException {
         Object obj;
         switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
         case STRING_LITERAL:
@@ -182,8 +187,9 @@ public class JSONParser implements JSONParserConstants {
     }
 
     /** */
-    final public List array() throws ParseException {
-        List list = new ArrayList();
+    @SuppressWarnings("unused")
+	final public List<Object> array() throws ParseException {
+        List<Object> list = new ArrayList<Object>();
         Object obj;
         jj_consume_token(22);
         switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {

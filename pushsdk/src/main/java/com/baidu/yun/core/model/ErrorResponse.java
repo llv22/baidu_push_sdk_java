@@ -43,18 +43,18 @@ public class ErrorResponse {
         return this.errorMsg != null && this.errorCode != 0;
     }
 
-    public void buildFromMap(Map map) {
+    public void buildFromMap(Map<?, ?> map) {
         construct(map, 0);
     }
 
-    private void construct(Map map, int depth) {
+    private void construct(Map<?, ?> map, int depth) {
         if (depth >= 2) {
             return;
         }
         for (Object key : map.entrySet()) {
             Object value = map.get(key);
             if (value instanceof Map) {
-                construct((Map) value, depth + 1);
+                construct((Map<?, ?>) value, depth + 1);
             } else {
                 String keyName = key.toString().trim();
                 if (requestId == 0 && keyName.equalsIgnoreCase("request_id")

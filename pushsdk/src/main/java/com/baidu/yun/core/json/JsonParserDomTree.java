@@ -34,14 +34,14 @@ public class JsonParserDomTree {
                 return null;
             if (segs[i].length() > 0) {
                 if (obj instanceof Map) {
-                    Map curMap = (Map) obj;
+                    Map<?, ?> curMap = (Map<?, ?>) obj;
                     obj = curMap.get(segs[i]);
                 } else if (obj instanceof List) {
-                    List curList = (List) obj;
+                    List<?> curList = (List<?>) obj;
                     obj = null;
                     for (Object o : curList) {
                         if (o instanceof Map) {
-                            if (((Map) o).containsKey(segs[i])) {
+                            if (((Map<?, ?>) o).containsKey(segs[i])) {
                                 obj = o;
                                 break;
                             }

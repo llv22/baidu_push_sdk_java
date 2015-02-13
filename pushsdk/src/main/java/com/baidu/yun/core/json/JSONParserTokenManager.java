@@ -2,11 +2,6 @@
 package com.baidu.yun.core.json;
 
 //  
-import java.io.StringReader;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.List;
-import java.util.ArrayList;
 
 /** Token Manager. */
 public class JSONParserTokenManager implements JSONParserConstants {

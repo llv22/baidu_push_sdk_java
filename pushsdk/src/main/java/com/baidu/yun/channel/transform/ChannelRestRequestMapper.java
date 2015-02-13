@@ -15,7 +15,8 @@ import com.baidu.yun.core.utility.StringUtility;
 
 public class ChannelRestRequestMapper {
 
-    public Map<String, String> marshall(ChannelRequest request) {
+    @SuppressWarnings({ "unused", "rawtypes", "unchecked" })
+	public Map<String, String> marshall(ChannelRequest request) {
 
         Map<String, String> params = new TreeMap<String, String>();
         Field[] childField = request.getClass().getDeclaredFields();
@@ -40,7 +41,7 @@ public class ChannelRestRequestMapper {
                     } else {
                         HttpParamKeyName annotation = field
                                 .getAnnotation(HttpParamKeyName.class);
-                        Class zlass = field.getType();
+                        Class<?> zlass = field.getType();
                         if (zlass.equals(Long.class)
                                 || "long".equalsIgnoreCase(zlass.getName())) {
                             if (obj == null) { // (Long)obj < 0

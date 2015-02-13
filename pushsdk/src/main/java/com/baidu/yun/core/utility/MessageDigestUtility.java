@@ -7,7 +7,8 @@ import java.security.NoSuchAlgorithmException;
 
 public class MessageDigestUtility {
 
-    public static String urlEncode(String url) {
+    @SuppressWarnings("deprecation")
+	public static String urlEncode(String url) {
         try {
             return URLEncoder.encode(url, "UTF-8");
         } catch (UnsupportedEncodingException e) {

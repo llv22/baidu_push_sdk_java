@@ -22,7 +22,7 @@ public class ChannelRestResponseJsonUnmapper {
         if (httpStatusCode == 200) {
             try {
                 JSONParser parser = new JSONParser();
-                Map map = parser.parser(jsonResponse);
+                Map<?, ?> map = parser.parser(jsonResponse);
                 if (resp != null) {
                     MapObjectUtility.convertMap2ObjectWithJson(resp, map);
                 }
@@ -32,7 +32,7 @@ public class ChannelRestResponseJsonUnmapper {
             }
             return resp;
         } else {
-            Map map = null;
+            Map<?, ?> map = null;
             try {
                 JSONParser parser = new JSONParser();
                 map = parser.parser(jsonResponse);
@@ -67,7 +67,7 @@ public class ChannelRestResponseJsonUnmapper {
         if (httpStatusCode == 200) {
             try {
                 JSONParser parser = new JSONParser();
-                Map map = parser.parser(jsonResponse);
+                Map<?, ?> map = parser.parser(jsonResponse);
                 if (map.containsKey("request_id")) {
                     return;
                 }
@@ -81,7 +81,7 @@ public class ChannelRestResponseJsonUnmapper {
             }
             return;
         } else {
-            Map map = null;
+            Map<?, ?> map = null;
             try {
                 JSONParser parser = new JSONParser();
                 map = parser.parser(jsonResponse);

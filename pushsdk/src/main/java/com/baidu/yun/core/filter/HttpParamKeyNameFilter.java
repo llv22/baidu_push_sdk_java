@@ -27,7 +27,8 @@ public class HttpParamKeyNameFilter implements IFieldFilter {
 
     }
 
-    @Override
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	@Override
     public void mapping(Field field, Object req, Map<String, String> params)
             throws Exception {
 
@@ -40,7 +41,7 @@ public class HttpParamKeyNameFilter implements IFieldFilter {
 
             HttpParamKeyName annotation = field
                     .getAnnotation(HttpParamKeyName.class);
-            Class zlass = field.getType();
+            Class<?> zlass = field.getType();
             if (zlass.equals(Long.class)
                     || "long".equalsIgnoreCase(zlass.getName())) {
                 params.put(annotation.name(), obj.toString());

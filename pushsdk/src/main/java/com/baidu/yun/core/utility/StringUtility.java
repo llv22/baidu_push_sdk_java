@@ -25,7 +25,7 @@ public class StringUtility {
         return sb.toString();
     }
 
-    public static String toJson(List list) {
+    public static String toJson(List<?> list) {
         StringBuilder sb = new StringBuilder();
         sb.append('[');
         for (int i = 0; i < list.size(); i++) {
