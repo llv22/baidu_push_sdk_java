@@ -92,18 +92,15 @@ public class YunHttpClient implements YunHttpObservable {
                         @Override
                         public void checkClientTrusted(X509Certificate[] chain,
                                 String authType) throws CertificateException {
-                            // TODO Auto-generated method stub
                         }
 
                         @Override
                         public void checkServerTrusted(X509Certificate[] chain,
                                 String authType) throws CertificateException {
-                            // TODO Auto-generated method stub
                         }
 
                         @Override
                         public X509Certificate[] getAcceptedIssuers() {
-                            // TODO Auto-generated method stub
                             return null;
                         }
                     } };
@@ -126,8 +123,7 @@ public class YunHttpClient implements YunHttpObservable {
                 conn.connect();
 
             } catch (Exception e) {
-                // TODO: handle exception
-
+          
                 conn.disconnect();
 
                 if (i + 1 >= maxRetryTimes) {
@@ -289,7 +285,6 @@ public class YunHttpClient implements YunHttpObservable {
     }
 
     public void addBatchHttpCallBack(List<YunHttpObserver> callbacks) {
-        // TODO Auto-generated method stub
         for (YunHttpObserver callback : callbacks) {
             addHttpCallback(callback);
         }

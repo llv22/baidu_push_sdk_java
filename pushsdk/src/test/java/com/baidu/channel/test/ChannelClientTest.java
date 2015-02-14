@@ -286,7 +286,6 @@ public class ChannelClientTest {
             PushTagMessageResponse response = channelClient
                     .pushTagMessage(request);
             if (response.getSuccessAmount() == 1) {
-                // TODO
             }
 
         } catch (ChannelClientException e) {
@@ -332,7 +331,6 @@ public class ChannelClientTest {
             PushBroadcastMessageResponse response = channelClient
                     .pushBroadcastMessage(request);
             if (response.getSuccessAmount() == 1) {
-                // TODO
             }
 
         } catch (ChannelClientException e) {
