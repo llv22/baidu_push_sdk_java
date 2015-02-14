@@ -146,7 +146,6 @@ public class MiniWebServer {
         }
 
         public void run() {
-            // TODO Auto-generated method stub
             try {
                 InputStream is = socket.getInputStream();
                 OutputStream os = socket.getOutputStream();

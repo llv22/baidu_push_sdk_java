@@ -228,8 +228,6 @@ public class YunHttpClient implements YunHttpObservable {
 
                 }
             } catch (Exception e) {
-                // TODO Auto-generated catch block
-
                 // @notify log event
                 notifyAndCallback(new YunHttpEvent(
                         YunHttpEvent.NETWORK_IO_EXCEPTION, surl, paramsContent,

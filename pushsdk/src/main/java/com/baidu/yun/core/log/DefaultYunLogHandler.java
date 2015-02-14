@@ -9,7 +9,6 @@ public class DefaultYunLogHandler implements YunLogHandler {
             .getName());
 
     public void onHandle(YunLogEvent event) {
-        // TODO Auto-generated method stub
         if (event.getLevel() == YunLogEvent.FATAL) {
             logger.log(Level.SEVERE, event.getMessage());
         } else if (event.getLevel() == YunLogEvent.WARNING) {

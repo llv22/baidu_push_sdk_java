@@ -67,7 +67,6 @@ public class BaiduChannelClient implements BaiduChannel {
     @Override
     public QueryBindListResponse queryBindList(QueryBindListRequest request)
             throws ChannelClientException, ChannelServerException {
-        // TODO Auto-generated method stub
         HttpRestResponse resp = process("query_bindlist", request);
         return responseJsonUnmapper.unmarshall(resp.getHttpStatusCode(),
                 resp.getJsonResponse(), new QueryBindListResponse());
@@ -87,7 +86,6 @@ public class BaiduChannelClient implements BaiduChannel {
     @Override
     public PushTagMessageResponse pushTagMessage(PushTagMessageRequest request)
             throws ChannelClientException, ChannelServerException {
-        // TODO Auto-generated method stub
         HttpRestResponse resp = process("push_msg", request);
         return responseJsonUnmapper.unmarshall(resp.getHttpStatusCode(),
                 resp.getJsonResponse(), new PushTagMessageResponse());
@@ -97,7 +95,6 @@ public class BaiduChannelClient implements BaiduChannel {
     public PushBroadcastMessageResponse pushBroadcastMessage(
             PushBroadcastMessageRequest request) throws ChannelClientException,
             ChannelServerException {
-        // TODO Auto-generated method stub
         HttpRestResponse resp = process("push_msg", request);
         return responseJsonUnmapper.unmarshall(resp.getHttpStatusCode(),
                 resp.getJsonResponse(), new PushBroadcastMessageResponse());
