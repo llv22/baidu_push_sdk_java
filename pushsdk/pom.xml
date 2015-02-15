@@ -7,11 +7,17 @@
 	<version>1.1.2-SNAPSHOT</version>
 	<name>pushsdk</name>
 	<url>http://maven.apache.org</url>
+	<properties>
+		<github.com.site-maven-plugin.version>0.11</github.com.site-maven-plugin.version>
+		<!-- github server corresponds to entry in ~/.m2/settings.xml -->
+    	<github.global.server>github</github.global.server>
+	</properties>
 	<distributionManagement>
 		<repository>
 			<id>llv23-baidupushsdk-repository</id>
 			<name>llv23's baidu push sdk repository</name>
-			<url>file://${project.basedir}/../repository/releases</url>
+			<!-- <url>file://${project.basedir}/../repository/releases</url> -->
+			<url>file://${project.build.directory}/releases</url>
 		</repository>
 	</distributionManagement>
 	<dependencies>
@@ -24,6 +30,16 @@
 	</dependencies>
 	<build>
 		<plugins>
+		<!-- http://stackoverflow.com/questions/16723533/modify-pom-xml-to-include-jdk-compiler-version -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<!-- or whatever version you use -->
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
 			<plugin>
 				<!-- see more about https://github.com/JakeWharton/github-deploy-maven-plugin/blob/master/pom.xml -->
 				<!-- http://stackoverflow.com/questions/15537165/maven-deployment-parameters-in-pom-xml -->
@@ -32,8 +48,38 @@
 				<artifactId>maven-deploy-plugin</artifactId>
 				<version>2.8.2</version>
 				<configuration>
-					<altDeploymentRepository>internal.repo::default::file://${project.basedir}/../repository/releases</altDeploymentRepository>
+					<version>1.1.2-SNAPSHOT</version>
+					<!-- <altDeploymentRepository>internal.repo::default::file://${project.basedir}/../repository/releases</altDeploymentRepository> -->
+					<altDeploymentRepository>internal.repo::default::file://${project.build.directory}/releases</altDeploymentRepository>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.github.github</groupId>
+				<!-- http://mvnrepository.com/artifact/com.github.github/site-maven-plugin -->
+				<!-- http://mvnrepository.com/artifact/org.apache.maven.plugins/maven-site-plugin -->
+				<artifactId>site-maven-plugin</artifactId>
+				<version>${github.com.site-maven-plugin.version}</version>
+				<configuration>
+					<message>Maven artifacts for ${project.version}</message>  <!-- git commit message -->
+					<noJekyll>true</noJekyll>                                  <!-- disable webpage processing -->
+					<outputDirectory>${project.build.directory}/releases</outputDirectory> <!-- matches distribution management repository url above -->
+					<branch>refs/heads/releases</branch>                       <!-- remote branch name -->
+					<includes>
+						<include>**/*</include>
+					</includes>
+					<repositoryName>baidu_push_sdk_java</repositoryName>      <!-- github repo name -->
+					<repositoryOwner>llv22</repositoryOwner>    <!-- github username -->
+				</configuration>
+				<executions>
+					<!-- run site-maven-plugin's 'site' target as part of the build's normal 
+						'deploy' phase -->
+					<execution>
+						<goals>
+							<goal>site</goal>
+						</goals>
+						<phase>deploy</phase>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
