@@ -11,6 +11,8 @@
 		<github.com.site-maven-plugin.version>0.11</github.com.site-maven-plugin.version>
 		<!-- github server corresponds to entry in ~/.m2/settings.xml -->
     	<github.global.server>github</github.global.server>
+		<!-- building with utf-8 encoding for across system environment, see http://www.oschina.net/question/158170_29408 -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<distributionManagement>
 		<repository>
