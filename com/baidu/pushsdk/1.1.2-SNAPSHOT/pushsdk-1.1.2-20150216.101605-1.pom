@@ -76,6 +76,7 @@
 				<configuration>
 					<!-- <altDeploymentRepository>internal.repo::default::file://${project.basedir}/../repository/releases</altDeploymentRepository> -->
 					<altDeploymentRepository>internal.repo::default::file://${project.build.directory}/releases</altDeploymentRepository>
+					<sources>${artifactId}-${version}-sources.jar</sources>
 				</configuration>
 			</plugin>
 			<plugin>
