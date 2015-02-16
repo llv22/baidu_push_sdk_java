@@ -3,7 +3,7 @@ package com.baidu.channel.test;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.baidu.yun.core.utility.StringUtility;
+import com.baidu.cloud.core.utility.StringUtility;
 
 public class temp {
 

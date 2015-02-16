@@ -3,29 +3,28 @@ package com.baidu.channel.test;
 import java.util.List;
 
 import org.junit.Assert;
-
 import org.junit.Test;
 
-import com.baidu.yun.channel.auth.ChannelKeyPair;
-import com.baidu.yun.channel.client.BaiduChannelClient;
-import com.baidu.yun.channel.exception.ChannelClientException;
-import com.baidu.yun.channel.exception.ChannelServerException;
-import com.baidu.yun.channel.model.BindInfo;
-import com.baidu.yun.channel.model.ChannelMessage;
-import com.baidu.yun.channel.model.FetchMessageRequest;
-import com.baidu.yun.channel.model.FetchMessageResponse;
-import com.baidu.yun.channel.model.InitAppIoscertRequest;
-import com.baidu.yun.channel.model.PushBroadcastMessageRequest;
-import com.baidu.yun.channel.model.PushBroadcastMessageResponse;
-import com.baidu.yun.channel.model.PushTagMessageRequest;
-import com.baidu.yun.channel.model.PushTagMessageResponse;
-import com.baidu.yun.channel.model.PushUnicastMessageRequest;
-import com.baidu.yun.channel.model.PushUnicastMessageResponse;
-import com.baidu.yun.channel.model.QueryBindListRequest;
-import com.baidu.yun.channel.model.QueryBindListResponse;
-import com.baidu.yun.channel.model.VerifyBindRequest;
-import com.baidu.yun.core.log.YunLogEvent;
-import com.baidu.yun.core.log.YunLogHandler;
+import com.baidu.cloud.channel.auth.ChannelKeyPair;
+import com.baidu.cloud.channel.client.BaiduChannelClient;
+import com.baidu.cloud.channel.exception.ChannelClientException;
+import com.baidu.cloud.channel.exception.ChannelServerException;
+import com.baidu.cloud.channel.model.BindInfo;
+import com.baidu.cloud.channel.model.ChannelMessage;
+import com.baidu.cloud.channel.model.FetchMessageRequest;
+import com.baidu.cloud.channel.model.FetchMessageResponse;
+import com.baidu.cloud.channel.model.InitAppIoscertRequest;
+import com.baidu.cloud.channel.model.PushBroadcastMessageRequest;
+import com.baidu.cloud.channel.model.PushBroadcastMessageResponse;
+import com.baidu.cloud.channel.model.PushTagMessageRequest;
+import com.baidu.cloud.channel.model.PushTagMessageResponse;
+import com.baidu.cloud.channel.model.PushUnicastMessageRequest;
+import com.baidu.cloud.channel.model.PushUnicastMessageResponse;
+import com.baidu.cloud.channel.model.QueryBindListRequest;
+import com.baidu.cloud.channel.model.QueryBindListResponse;
+import com.baidu.cloud.channel.model.VerifyBindRequest;
+import com.baidu.cloud.core.log.CloudLogEvent;
+import com.baidu.cloud.core.log.CloudLogHandler;
 
 public class ChannelClientTest {
 
@@ -42,9 +41,9 @@ public class ChannelClientTest {
         BaiduChannelClient channelClient = new BaiduChannelClient(pair);
 
         // 3. 若要了解交互细节，请注册YunLogHandler类
-        channelClient.setChannelLogHandler(new YunLogHandler() {
+        channelClient.setChannelLogHandler(new CloudLogHandler() {
             @Override
-            public void onHandle(YunLogEvent event) {
+            public void onHandle(CloudLogEvent event) {
                 System.out.println(event.getMessage());
             }
         });
@@ -111,9 +110,9 @@ public class ChannelClientTest {
         BaiduChannelClient channelClient = new BaiduChannelClient(pair);
 
         // 3. 若要了解交互细节，请注册YunLogHandler类
-        channelClient.setChannelLogHandler(new YunLogHandler() {
+        channelClient.setChannelLogHandler(new CloudLogHandler() {
             @Override
-            public void onHandle(YunLogEvent event) {
+            public void onHandle(CloudLogEvent event) {
                 System.out.println(event.getMessage());
             }
         });
@@ -164,9 +163,9 @@ public class ChannelClientTest {
         BaiduChannelClient channelClient = new BaiduChannelClient(pair);
 
         // 3. 若要了解交互细节，请注册YunLogHandler类
-        channelClient.setChannelLogHandler(new YunLogHandler() {
+        channelClient.setChannelLogHandler(new CloudLogHandler() {
             @Override
-            public void onHandle(YunLogEvent event) {
+            public void onHandle(CloudLogEvent event) {
                 System.out.println(event.getMessage());
             }
         });
@@ -218,9 +217,9 @@ public class ChannelClientTest {
         BaiduChannelClient channelClient = new BaiduChannelClient(pair);
 
         // 3. 若要了解交互细节，请注册YunLogHandler类
-        channelClient.setChannelLogHandler(new YunLogHandler() {
+        channelClient.setChannelLogHandler(new CloudLogHandler() {
             @Override
-            public void onHandle(YunLogEvent event) {
+            public void onHandle(CloudLogEvent event) {
                 System.out.println(event.getMessage());
             }
         });
@@ -266,9 +265,9 @@ public class ChannelClientTest {
         BaiduChannelClient channelClient = new BaiduChannelClient(pair);
 
         // 3. 若要了解交互细节，请注册YunLogHandler类
-        channelClient.setChannelLogHandler(new YunLogHandler() {
+        channelClient.setChannelLogHandler(new CloudLogHandler() {
             @Override
-            public void onHandle(YunLogEvent event) {
+            public void onHandle(CloudLogEvent event) {
                 System.out.println(event.getMessage());
             }
         });
@@ -312,9 +311,9 @@ public class ChannelClientTest {
         BaiduChannelClient channelClient = new BaiduChannelClient(pair);
 
         // 3. 若要了解交互细节，请注册YunLogHandler类
-        channelClient.setChannelLogHandler(new YunLogHandler() {
+        channelClient.setChannelLogHandler(new CloudLogHandler() {
             @Override
-            public void onHandle(YunLogEvent event) {
+            public void onHandle(CloudLogEvent event) {
                 System.out.println(event.getMessage());
             }
         });
@@ -356,9 +355,9 @@ public class ChannelClientTest {
         BaiduChannelClient channelClient = new BaiduChannelClient(pair);
 
         // 3. 若要了解交互细节，请注册YunLogHandler类
-        channelClient.setChannelLogHandler(new YunLogHandler() {
+        channelClient.setChannelLogHandler(new CloudLogHandler() {
             @Override
-            public void onHandle(YunLogEvent event) {
+            public void onHandle(CloudLogEvent event) {
                 System.out.println(event.getMessage());
             }
         });
@@ -398,9 +397,9 @@ public class ChannelClientTest {
         BaiduChannelClient channelClient = new BaiduChannelClient(pair);
 
         // 3. 若要了解交互细节，请注册YunLogHandler类
-        channelClient.setChannelLogHandler(new YunLogHandler() {
+        channelClient.setChannelLogHandler(new CloudLogHandler() {
             @Override
-            public void onHandle(YunLogEvent event) {
+            public void onHandle(CloudLogEvent event) {
                 System.out.println(event.getMessage());
             }
         });
@@ -442,9 +441,9 @@ public class ChannelClientTest {
         BaiduChannelClient channelClient = new BaiduChannelClient(pair);
 
         // 3. 若要了解交互细节，请注册YunLogHandler类
-        channelClient.setChannelLogHandler(new YunLogHandler() {
+        channelClient.setChannelLogHandler(new CloudLogHandler() {
             @Override
-            public void onHandle(YunLogEvent event) {
+            public void onHandle(CloudLogEvent event) {
                 System.out.println(event.getMessage());
             }
         });
