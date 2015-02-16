@@ -78,6 +78,13 @@
 					<altDeploymentRepository>internal.repo::default::file://${project.build.directory}/releases</altDeploymentRepository>
 					<sources>${artifactId}-${version}-sources.jar</sources>
 				</configuration>
+				<executions> 
+			        <execution> 
+			          <id>deploy</id>
+			          <phase>deploy</phase>
+			          <goals><goal>deploy</goal></goals> 
+			        </execution> 
+		      	</executions> 
 			</plugin>
 			<plugin>
 				<groupId>com.github.github</groupId>
