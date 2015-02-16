@@ -40,6 +40,7 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
+			<!-- http://stackoverflow.com/questions/4725668/how-to-deploy-snapshot-with-sources-and-javadoc -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
       		  	<artifactId>maven-source-plugin</artifactId>
@@ -52,6 +53,7 @@
 		        	</execution>
 		      	</executions>
     		</plugin>
+    		<!-- see issue of javadoc,  http://mail-archives.apache.org/mod_mbox/ant-user/200305.mbox/%3COE410Xn2Pi1Y7PeGbPn0001a74f@hotmail.com%3E -->
     		<!-- 
     		<plugin> 
 				<groupId>org.apache.maven.plugins</groupId>
@@ -76,7 +78,6 @@
 				<configuration>
 					<!-- <altDeploymentRepository>internal.repo::default::file://${project.basedir}/../repository/releases</altDeploymentRepository> -->
 					<altDeploymentRepository>internal.repo::default::file://${project.build.directory}/releases</altDeploymentRepository>
-					<sources>${artifactId}-${version}-sources.jar</sources>
 				</configuration>
 				<executions> 
 			        <execution> 
