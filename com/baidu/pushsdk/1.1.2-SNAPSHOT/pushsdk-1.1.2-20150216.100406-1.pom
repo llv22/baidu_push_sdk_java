@@ -30,7 +30,7 @@
 	</dependencies>
 	<build>
 		<plugins>
-		<!-- http://stackoverflow.com/questions/16723533/modify-pom-xml-to-include-jdk-compiler-version -->
+			<!-- http://stackoverflow.com/questions/16723533/modify-pom-xml-to-include-jdk-compiler-version -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -40,6 +40,32 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+      		  	<artifactId>maven-source-plugin</artifactId>
+				<version>2.4</version>
+		      	<executions>
+		        	<execution>
+		          		<id>attach-sources</id>
+		          		<phase>deploy</phase>
+		          		<goals><goal>jar-no-fork</goal></goals> 
+		        	</execution>
+		      	</executions>
+    		</plugin>
+    		<!-- 
+    		<plugin> 
+				<groupId>org.apache.maven.plugins</groupId>
+		      	<artifactId>maven-javadoc-plugin</artifactId> 
+				<version>2.10.1</version>
+		      	<executions> 
+			        <execution> 
+			          <id>attach-javadocs</id>
+			          <phase>deploy</phase>
+			          <goals><goal>jar</goal></goals> 
+			        </execution> 
+		     	</executions> 
+    	    </plugin>
+    	     -->
 			<plugin>
 				<!-- see more about https://github.com/JakeWharton/github-deploy-maven-plugin/blob/master/pom.xml -->
 				<!-- http://stackoverflow.com/questions/15537165/maven-deployment-parameters-in-pom-xml -->
@@ -60,19 +86,24 @@
 				<artifactId>site-maven-plugin</artifactId>
 				<version>${github.com.site-maven-plugin.version}</version>
 				<configuration>
-					<message>Maven artifacts for ${project.version}</message>  <!-- git commit message -->
-					<noJekyll>true</noJekyll>                                  <!-- disable webpage processing -->
-					<outputDirectory>${project.build.directory}/releases</outputDirectory> <!-- matches distribution management repository url above -->
-					<branch>refs/heads/releases</branch>                       <!-- remote branch name -->
+					<!-- git commit message -->
+					<message>Maven artifacts for ${project.version}</message> 
+					<!-- disable webpage processing --> 
+					<noJekyll>true</noJekyll>  
+					<!-- matches distribution management repository url above -->
+					<outputDirectory>${project.build.directory}/releases</outputDirectory> 
+					<!-- remote branch name -->
+					<branch>refs/heads/releases</branch>                       
 					<includes>
 						<include>**/*</include>
 					</includes>
-					<repositoryName>baidu_push_sdk_java</repositoryName>      <!-- github repo name -->
-					<repositoryOwner>llv22</repositoryOwner>    <!-- github username -->
+					<!-- github repo name -->
+					<repositoryName>baidu_push_sdk_java</repositoryName>      
+					<!-- github username -->
+					<repositoryOwner>llv22</repositoryOwner>    
 				</configuration>
 				<executions>
-					<!-- run site-maven-plugin's 'site' target as part of the build's normal 
-						'deploy' phase -->
+					<!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->
 					<execution>
 						<goals>
 							<goal>site</goal>
