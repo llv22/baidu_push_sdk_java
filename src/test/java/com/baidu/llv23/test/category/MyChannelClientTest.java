@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
@@ -15,6 +16,7 @@ import com.baidu.cloud.channel.auth.ChannelKeyPair;
 import com.baidu.cloud.channel.client.BaiduChannelClient;
 import com.baidu.cloud.channel.exception.ChannelClientException;
 import com.baidu.cloud.channel.exception.ChannelServerException;
+import com.baidu.cloud.channel.model.DeployStatus;
 import com.baidu.cloud.channel.model.PushBroadcastMessageRequest;
 import com.baidu.cloud.channel.model.PushBroadcastMessageResponse;
 import com.baidu.cloud.core.log.CloudLogEvent;
@@ -57,17 +59,15 @@ public class MyChannelClientTest {
             PushBroadcastMessageRequest request = new PushBroadcastMessageRequest();
             // see parameters description in - http://developer.baidu.com/wiki/index.php?title=docs/cplat/push/api/list#push_msg
             request.setMessageType(1);
-            request.setDeviceType(4);
-            request.setMessage("{\"aps\":{\"alert\":\"test\"}}");
-//            request.setMessage("{\"title\":\"iContests\",\"description\":\"New Contest is coming\"}");
-//            request.setMessage("{\"aps\":{\"alert\":\"test\"}}");
+            request.setDeviceType(4, true);
+            request.setDeployStatus(DeployStatus.development);
+            request.setMessage("{\"title\":\"iContests\",\"description\":\"New Contest is coming\"}");
+            // see removal of msg_keys for iOS, must have in version
+//            request.setMsgKey(null);
             
             // 5. pushMessage
             PushBroadcastMessageResponse response = channelClient.pushBroadcastMessage(request);
-            if (response.getSuccessAmount() == 1) {
-                System.out.println("successfully for boarding cast");
-            }
-
+            Assert.assertEquals(1, response.getSuccessAmount());
         } catch (ChannelClientException e) {
             // handle exception in client side
             e.printStackTrace();

@@ -323,7 +323,7 @@ public class ChannelClientTest {
             // 4. 创建请求类对象
             PushBroadcastMessageRequest request = new PushBroadcastMessageRequest();
             request.setMessageType(0);
-            request.setDeviceType(3);
+            request.setDeviceType(3, false);
             request.setMessage("{\"title\":\"标题\",\"description\":\"推荐内容\"}");
 
             // 5. 调用pushMessage接口
