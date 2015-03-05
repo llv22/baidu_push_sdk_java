@@ -31,6 +31,13 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<!-- http://maven.apache.org/guides/getting-started/index.html#How_do_I_add_resources_to_my_JAR -->
+	    <resources>
+      		<resource>
+        		<directory>src/main/resources</directory>
+        		<filtering>true</filtering>
+      		</resource>
+    	</resources>
 		<plugins>
 			<!-- http://stackoverflow.com/questions/16723533/modify-pom-xml-to-include-jdk-compiler-version -->
 			<plugin>

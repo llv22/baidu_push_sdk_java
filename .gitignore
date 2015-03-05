@@ -3,6 +3,9 @@
 
 *.class
 
+# avoid application.properties into git
+application.properties
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 

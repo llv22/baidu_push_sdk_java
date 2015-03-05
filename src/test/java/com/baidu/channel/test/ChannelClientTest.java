@@ -109,7 +109,7 @@ public class ChannelClientTest {
         // 2. 创建BaiduChannelClient对象实例
         BaiduChannelClient channelClient = new BaiduChannelClient(pair);
 
-        // 3. 若要了解交互细节，请注册YunLogHandler类
+        // 3. 若要了解交互细节，请注册CloudLogHandler类
         channelClient.setChannelLogHandler(new CloudLogHandler() {
             @Override
             public void onHandle(CloudLogEvent event) {
@@ -216,7 +216,7 @@ public class ChannelClientTest {
         // 2. 创建BaiduChannelClient对象实例
         BaiduChannelClient channelClient = new BaiduChannelClient(pair);
 
-        // 3. 若要了解交互细节，请注册YunLogHandler类
+        // 3. 若要了解交互细节，请注册CloudLogHandler类
         channelClient.setChannelLogHandler(new CloudLogHandler() {
             @Override
             public void onHandle(CloudLogEvent event) {
@@ -310,7 +310,7 @@ public class ChannelClientTest {
         // 2. 创建BaiduChannelClient对象实例
         BaiduChannelClient channelClient = new BaiduChannelClient(pair);
 
-        // 3. 若要了解交互细节，请注册YunLogHandler类
+        // 3. 若要了解交互细节，请注册CloudLogEvent类
         channelClient.setChannelLogHandler(new CloudLogHandler() {
             @Override
             public void onHandle(CloudLogEvent event) {
@@ -327,8 +327,7 @@ public class ChannelClientTest {
             request.setMessage("{\"title\":\"标题\",\"description\":\"推荐内容\"}");
 
             // 5. 调用pushMessage接口
-            PushBroadcastMessageResponse response = channelClient
-                    .pushBroadcastMessage(request);
+            PushBroadcastMessageResponse response = channelClient.pushBroadcastMessage(request);
             if (response.getSuccessAmount() == 1) {
             }
 
@@ -406,11 +405,11 @@ public class ChannelClientTest {
 
         try {
 
-            // 4. 创建请求类对象
+            // see 4. create FetchMessageRequest instance
             FetchMessageRequest request = new FetchMessageRequest();
             request.setUserId("1144280722819924199");
 
-            // 5. 调用 fetchMessage 接口
+            // see 5. call fetchMessage(request) interface
             FetchMessageResponse resp = channelClient.fetchMessage(request);
             List<ChannelMessage> messages = resp.getMessages();
             for (ChannelMessage msg : messages) {
@@ -418,10 +417,10 @@ public class ChannelClientTest {
             }
 
         } catch (ChannelClientException e) {
-            // 处理客户端错误异常
+            // handle exception in client side
             e.printStackTrace();
         } catch (ChannelServerException e) {
-            // 处理服务端错误异常
+            // handle exception in server side
             System.out.println(String.format(
                     "request_id: %d, error_code: %d, error_message: %s",
                     e.getRequestId(), e.getErrorCode(), e.getErrorMsg()));
@@ -432,15 +431,15 @@ public class ChannelClientTest {
     @Test
     public void testInitIosCert() {
 
-        // 1. 设置developer平台的ApiKey/SecretKey
+        // see 1. ApiKey/SecretKey on developer platform
         String apiKey = "EURAf2Qzru12h1m57nYgFImj";
         String secretKey = "AZvCruwWzTeORphcQqKyQGGAYdLLXZ00";
         ChannelKeyPair pair = new ChannelKeyPair(apiKey, secretKey);
 
-        // 2. 创建BaiduChannelClient对象实例
+        // see 2. create BaiduChannelClient instance
         BaiduChannelClient channelClient = new BaiduChannelClient(pair);
 
-        // 3. 若要了解交互细节，请注册YunLogHandler类
+        // see 3. if want to learn interaction details, please register CloudLogHandler instance
         channelClient.setChannelLogHandler(new CloudLogHandler() {
             @Override
             public void onHandle(CloudLogEvent event) {
@@ -450,7 +449,7 @@ public class ChannelClientTest {
 
         try {
 
-            // 4. 创建请求类对象
+            // see 4. create request instance
             InitAppIoscertRequest request = new InitAppIoscertRequest();
             request.setName("name");
             request.setDescription("description");
@@ -458,14 +457,14 @@ public class ChannelClientTest {
             request.setDevCert("");
             request.setReleaseCert("");
 
-            // 5. 调用 initAppIoscert 接口
+            // see 5. call initAppIoscert(request) interface
             channelClient.initAppIoscert(request);
 
         } catch (ChannelClientException e) {
+            // handle exception in client side
             e.printStackTrace();
-            // 处理客户端错误异常
         } catch (ChannelServerException e) {
-            // 处理服务端错误异常
+            // handle exception in server side
             System.out.println(String.format(
                     "request_id: %d, error_code: %d, error_message: %s",
                     e.getRequestId(), e.getErrorCode(), e.getErrorMsg()));
