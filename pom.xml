@@ -49,6 +49,27 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
+			
+			<!-- Maven Surefire Plugin, see http://maven.apache.org/surefire/maven-surefire-plugin/examples/junit.html -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.18.1</version>
+				<configuration>
+					<groups>com.baidu.llv23.test.category.LocalCloudPushInterface</groups>
+					<forkCount>0</forkCount>
+					<parallel>classes</parallel>
+					<threadCount>10</threadCount>
+				</configuration>
+			    <dependencies>
+			      <dependency>
+			        <groupId>org.apache.maven.surefire</groupId>
+			        <artifactId>surefire-junit47</artifactId>
+			        <version>2.18.1</version>
+			      </dependency>
+			    </dependencies>
+			</plugin>
+			
 			<!-- http://stackoverflow.com/questions/4725668/how-to-deploy-snapshot-with-sources-and-javadoc -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
