@@ -11,6 +11,8 @@
 		<github.com.site-maven-plugin.version>0.11</github.com.site-maven-plugin.version>
 		<!-- github server corresponds to entry in ~/.m2/settings.xml -->
     	<github.global.server>github</github.global.server>
+		<!-- building with utf-8 encoding for across system environment, see http://www.oschina.net/question/158170_29408 -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<distributionManagement>
 		<repository>
@@ -29,6 +31,13 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<!-- http://maven.apache.org/guides/getting-started/index.html#How_do_I_add_resources_to_my_JAR -->
+	    <resources>
+      		<resource>
+        		<directory>src/main/resources</directory>
+        		<filtering>true</filtering>
+      		</resource>
+    	</resources>
 		<plugins>
 			<!-- http://stackoverflow.com/questions/16723533/modify-pom-xml-to-include-jdk-compiler-version -->
 			<plugin>
@@ -40,6 +49,27 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
+			
+			<!-- Maven Surefire Plugin, see http://maven.apache.org/surefire/maven-surefire-plugin/examples/junit.html -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.18.1</version>
+				<configuration>
+					<groups>com.baidu.llv23.test.category.LocalCloudPushInterface</groups>
+					<forkCount>0</forkCount>
+					<parallel>classes</parallel>
+					<threadCount>10</threadCount>
+				</configuration>
+			    <dependencies>
+			      <dependency>
+			        <groupId>org.apache.maven.surefire</groupId>
+			        <artifactId>surefire-junit47</artifactId>
+			        <version>2.18.1</version>
+			      </dependency>
+			    </dependencies>
+			</plugin>
+			
 			<!-- http://stackoverflow.com/questions/4725668/how-to-deploy-snapshot-with-sources-and-javadoc -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
