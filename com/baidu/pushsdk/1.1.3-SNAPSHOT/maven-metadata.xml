@@ -2,29 +2,29 @@
 <metadata modelVersion="1.1.0">
   <groupId>com.baidu</groupId>
   <artifactId>pushsdk</artifactId>
-  <version>1.1.2-SNAPSHOT</version>
+  <version>1.1.3-SNAPSHOT</version>
   <versioning>
     <snapshot>
-      <timestamp>20150305.074146</timestamp>
+      <timestamp>20150305.085824</timestamp>
       <buildNumber>2</buildNumber>
     </snapshot>
-    <lastUpdated>20150305074146</lastUpdated>
+    <lastUpdated>20150305085824</lastUpdated>
     <snapshotVersions>
       <snapshotVersion>
         <extension>jar</extension>
-        <value>1.1.2-20150305.074021-1</value>
-        <updated>20150305074146</updated>
+        <value>1.1.3-20150305.085823-1</value>
+        <updated>20150305085824</updated>
       </snapshotVersion>
       <snapshotVersion>
         <extension>pom</extension>
-        <value>1.1.2-20150305.074021-1</value>
-        <updated>20150305074146</updated>
+        <value>1.1.3-20150305.085823-1</value>
+        <updated>20150305085824</updated>
       </snapshotVersion>
       <snapshotVersion>
         <classifier>sources</classifier>
         <extension>jar</extension>
-        <value>1.1.2-20150305.074021-1</value>
-        <updated>20150305074146</updated>
+        <value>1.1.3-20150305.085823-1</value>
+        <updated>20150305085824</updated>
       </snapshotVersion>
     </snapshotVersions>
   </versioning>
