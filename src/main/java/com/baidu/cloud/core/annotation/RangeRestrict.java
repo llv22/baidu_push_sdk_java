@@ -8,9 +8,9 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface RangeRestrict {
-
-    public long minLength() default Long.MIN_VALUE;
-
-    public long maxLength() default Long.MAX_VALUE;
-
+	
+	public long minLength() default Long.MIN_VALUE;
+	
+	public long maxLength() default Long.MAX_VALUE;
+	
 }

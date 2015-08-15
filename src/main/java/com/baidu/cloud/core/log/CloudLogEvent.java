@@ -1,36 +1,36 @@
 package com.baidu.cloud.core.log;
 
 public class CloudLogEvent {
+	
+	public static final int FATAL = 0;
+	public static final int WARNING = 1;
+	public static final int NOTICE = 2;
+	public static final int INFO = 3;
+	public static final int DEBUG = 4;
+	
+	private int level;
 
-    public static final int FATAL = 0;
-    public static final int WARNING = 1;
-    public static final int NOTICE = 2;
-    public static final int INFO = 3;
-    public static final int DEBUG = 4;
+	private String message;
+	
+	public CloudLogEvent(int level, String message) {
+		this.level = level;
+		this.message = message;
+	}
 
-    private int level;
+	public int getLevel() {
+		return level;
+	}
 
-    private String message;
+	public void setLevel(int level) {
+		this.level = level;
+	}
 
-    public CloudLogEvent(int level, String message) {
-        this.level = level;
-        this.message = message;
-    }
+	public String getMessage() {
+		return message;
+	}
 
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	
 }

@@ -12,16 +12,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-import com.baidu.cloud.channel.auth.ChannelKeyPair;
-import com.baidu.cloud.channel.client.BaiduChannelClient;
-import com.baidu.cloud.channel.exception.ChannelClientException;
-import com.baidu.cloud.channel.exception.ChannelServerException;
-import com.baidu.cloud.channel.model.DeployStatus;
-import com.baidu.cloud.channel.model.PushBroadcastMessageRequest;
-import com.baidu.cloud.channel.model.PushBroadcastMessageResponse;
-import com.baidu.cloud.core.log.CloudLogEvent;
-import com.baidu.cloud.core.log.CloudLogHandler;
-
 /**
  * @author llv23
  *
@@ -40,6 +30,7 @@ public class MyChannelClientTest {
 
         String apiKey = defaultProps.getProperty("apiKey");
         String secretKey = defaultProps.getProperty("secretKey");
+        /*
         ChannelKeyPair pair = new ChannelKeyPair(apiKey, secretKey);
 
         // see 2. create BaiduChannelClient instance
@@ -76,7 +67,8 @@ public class MyChannelClientTest {
             System.out.println(String.format(
                     "request_id: %d, error_code: %d, error_message: %s",
                     e.getRequestId(), e.getErrorCode(), e.getErrorMsg()));
-        } 
+        } */
+        
     }
 	
 }

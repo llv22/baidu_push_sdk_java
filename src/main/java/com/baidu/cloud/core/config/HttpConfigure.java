@@ -3,42 +3,42 @@ package com.baidu.cloud.core.config;
 /**
  * 
  * @author renjie
- * 
+ *
  */
 public class HttpConfigure {
 
-    public static final int DEFAULT_MAX_RETRY_TIMES = 3;
+	public static final int DEFAULT_MAX_RETRY_TIMES = 3;
+	
+	public static final int DEFAULT_MAX_TIMEOUT = 10000;		// ms
+	
+	private int maxRetryTimes = DEFAULT_MAX_RETRY_TIMES;
+	
+	private int maxTimeout = DEFAULT_MAX_TIMEOUT;
+	
+	private boolean relocationable = true;
 
-    public static final int DEFAULT_MAX_TIMEOUT = 10000; // ms
+	public int getMaxRetryTimes() {
+		return maxRetryTimes;
+	}
 
-    private int maxRetryTimes = DEFAULT_MAX_RETRY_TIMES;
+	public void setMaxRetryTimes(int maxRetryTimes) {
+		this.maxRetryTimes = maxRetryTimes;
+	}
 
-    private int maxTimeout = DEFAULT_MAX_TIMEOUT;
+	public int getMaxTimeout() {
+		return maxTimeout;
+	}
 
-    private boolean relocationable = true;
+	public void setMaxTimeout(int maxTimeout) {
+		this.maxTimeout = maxTimeout;
+	}
 
-    public int getMaxRetryTimes() {
-        return maxRetryTimes;
-    }
+	public boolean isRelocationable() {
+		return relocationable;
+	}
 
-    public void setMaxRetryTimes(int maxRetryTimes) {
-        this.maxRetryTimes = maxRetryTimes;
-    }
-
-    public int getMaxTimeout() {
-        return maxTimeout;
-    }
-
-    public void setMaxTimeout(int maxTimeout) {
-        this.maxTimeout = maxTimeout;
-    }
-
-    public boolean isRelocationable() {
-        return relocationable;
-    }
-
-    public void setRelocationable(boolean relocationable) {
-        this.relocationable = relocationable;
-    }
-
+	public void setRelocationable(boolean relocationable) {
+		this.relocationable = relocationable;
+	}
+	
 }

@@ -9,8 +9,9 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface CollectionRestrict {
 
-    public int minLength() default Integer.MIN_VALUE;
-
-    public int maxLength() default Integer.MAX_VALUE;
-
+	public int minLength() default Integer.MIN_VALUE;
+	
+	public int maxLength() default Integer.MAX_VALUE;
+	
+	
 }

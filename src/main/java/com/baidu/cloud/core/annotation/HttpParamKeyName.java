@@ -8,9 +8,10 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface HttpParamKeyName {
-
-    public String name();
-
-    public R param();
-
+	
+	public String name();
+	
+	public R param();
+	
 }
+

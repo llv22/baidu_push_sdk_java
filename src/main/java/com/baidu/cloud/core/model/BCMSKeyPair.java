@@ -1,30 +1,31 @@
 package com.baidu.cloud.core.model;
 
 public class BCMSKeyPair {
+	
+	private String accessKey;
+	
+	private String secretKey;
 
-    private String accessKey;
+	public BCMSKeyPair(String accessKey, String secretKey) {
+		this.accessKey = accessKey;
+		this.secretKey = secretKey;
+	}
 
-    private String secretKey;
+	public String getAccessKey() {
+		return accessKey;
+	}
 
-    public BCMSKeyPair(String accessKey, String secretKey) {
-        this.accessKey = accessKey;
-        this.secretKey = secretKey;
-    }
+	public void setAccessKey(String accessKey) {
+		this.accessKey = accessKey;
+	}
 
-    public String getAccessKey() {
-        return accessKey;
-    }
+	public String getSecretKey() {
+		return secretKey;
+	}
 
-    public void setAccessKey(String accessKey) {
-        this.accessKey = accessKey;
-    }
+	public void setSecretKey(String secretKey) {
+		this.secretKey = secretKey;
+	}
 
-    public String getSecretKey() {
-        return secretKey;
-    }
-
-    public void setSecretKey(String secretKey) {
-        this.secretKey = secretKey;
-    }
-
+	
 }

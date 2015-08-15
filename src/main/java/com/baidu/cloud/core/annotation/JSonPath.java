@@ -9,6 +9,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface JSonPath {
 
-    public String path();
-
+	public String path();
+	
 }
