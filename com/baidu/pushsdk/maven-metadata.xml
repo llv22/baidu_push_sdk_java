@@ -4,8 +4,8 @@
   <artifactId>pushsdk</artifactId>
   <versioning>
     <versions>
-      <version>1.1.3-SNAPSHOT</version>
+      <version>3.0.1-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20150312060918</lastUpdated>
+    <lastUpdated>20150815130246</lastUpdated>
   </versioning>
 </metadata>
