@@ -3,8 +3,8 @@
 
 *.class
 
-# avoid application.properties into git
-application.properties
+# avoid application.properties into git, currently it's variable don't have a user/secret
+# application.properties
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
