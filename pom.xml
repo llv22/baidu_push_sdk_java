@@ -10,17 +10,21 @@
 	<properties>
 		<github.com.site-maven-plugin.version>0.11</github.com.site-maven-plugin.version>
 		<!-- github server corresponds to entry in ~/.m2/settings.xml -->
-    	<github.global.server>github</github.global.server>
+		<github.global.server>github</github.global.server>
 		<!-- building with utf-8 encoding for across system environment, see http://www.oschina.net/question/158170_29408 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<distributionManagement>
 		<repository>
-			<id>llv23-baidupushsdk-repository</id>
-			<name>llv23's baidu push sdk repository</name>
-			<!-- <url>file://${project.basedir}/../repository/releases</url> -->
-			<url>file://${project.build.directory}/releases</url>
+			<id>mynexusdeployment</id>
+			<name>Internal Releases</name>
+			<url>http://123.57.249.151:8081/nexus/content/repositories/bae3local/</url>
 		</repository>
+		<snapshotRepository>
+			<id>mynexusdeployment</id>
+			<name>Internal Snapshots</name>
+			<url>http://123.57.249.151:8081/nexus/content/repositories/bae3localsnapshots/</url>
+		</snapshotRepository>
 	</distributionManagement>
 	<dependencies>
 		<dependency>
@@ -38,12 +42,12 @@
 	</dependencies>
 	<build>
 		<!-- http://maven.apache.org/guides/getting-started/index.html#How_do_I_add_resources_to_my_JAR -->
-	    <resources>
-      		<resource>
-        		<directory>src/main/resources</directory>
-        		<filtering>true</filtering>
-      		</resource>
-    	</resources>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<!-- http://stackoverflow.com/questions/16723533/modify-pom-xml-to-include-jdk-compiler-version -->
 			<plugin>
@@ -55,7 +59,7 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
-			
+
 			<!-- Maven Surefire Plugin, see http://maven.apache.org/surefire/maven-surefire-plugin/examples/junit.html -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -67,43 +71,48 @@
 					<parallel>classes</parallel>
 					<threadCount>10</threadCount>
 				</configuration>
-			    <dependencies>
-			      <dependency>
-			        <groupId>org.apache.maven.surefire</groupId>
-			        <artifactId>surefire-junit47</artifactId>
-			        <version>2.18.1</version>
-			      </dependency>
-			    </dependencies>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.surefire</groupId>
+						<artifactId>surefire-junit47</artifactId>
+						<version>2.18.1</version>
+					</dependency>
+				</dependencies>
 			</plugin>
-			
+
 			<!-- http://stackoverflow.com/questions/4725668/how-to-deploy-snapshot-with-sources-and-javadoc -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-      		  	<artifactId>maven-source-plugin</artifactId>
+				<artifactId>maven-source-plugin</artifactId>
 				<version>2.4</version>
-		      	<executions>
-		        	<execution>
-		          		<id>attach-sources</id>
-		          		<phase>deploy</phase>
-		          		<goals><goal>jar-no-fork</goal></goals> 
-		        	</execution>
-		      	</executions>
-    		</plugin>
-    		<!-- see issue of javadoc,  http://mail-archives.apache.org/mod_mbox/ant-user/200305.mbox/%3COE410Xn2Pi1Y7PeGbPn0001a74f@hotmail.com%3E -->
-    		<!-- 
-    		<plugin> 
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- see issue of javadoc, http://mail-archives.apache.org/mod_mbox/ant-user/200305.mbox/%3COE410Xn2Pi1Y7PeGbPn0001a74f@hotmail.com%3E -->
+			<!-- 
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-		      	<artifactId>maven-javadoc-plugin</artifactId> 
+				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>2.10.1</version>
-		      	<executions> 
-			        <execution> 
-			          <id>attach-javadocs</id>
-			          <phase>deploy</phase>
-			          <goals><goal>jar</goal></goals> 
-			        </execution> 
-		     	</executions> 
-    	    </plugin>
-    	     -->
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin> 
+			-->
+
 			<plugin>
 				<!-- see more about https://github.com/JakeWharton/github-deploy-maven-plugin/blob/master/pom.xml -->
 				<!-- http://stackoverflow.com/questions/15537165/maven-deployment-parameters-in-pom-xml -->
@@ -111,48 +120,15 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-deploy-plugin</artifactId>
 				<version>2.8.2</version>
-				<configuration>
-					<!-- <altDeploymentRepository>internal.repo::default::file://${project.basedir}/../repository/releases</altDeploymentRepository> -->
-					<altDeploymentRepository>internal.repo::default::file://${project.build.directory}/releases</altDeploymentRepository>
-				</configuration>
-				<executions> 
-			        <execution> 
-			          <id>deploy</id>
-			          <phase>deploy</phase>
-			          <goals><goal>deploy</goal></goals> 
-			        </execution> 
-		      	</executions> 
-			</plugin>
-			<plugin>
-				<groupId>com.github.github</groupId>
-				<!-- http://mvnrepository.com/artifact/com.github.github/site-maven-plugin -->
-				<!-- http://mvnrepository.com/artifact/org.apache.maven.plugins/maven-site-plugin -->
-				<artifactId>site-maven-plugin</artifactId>
-				<version>${github.com.site-maven-plugin.version}</version>
-				<configuration>
-					<!-- git commit message -->
-					<message>Maven artifacts for ${project.version}</message> 
-					<!-- disable webpage processing --> 
-					<noJekyll>true</noJekyll>  
-					<!-- matches distribution management repository url above -->
-					<outputDirectory>${project.build.directory}/releases</outputDirectory> 
-					<!-- remote branch name -->
-					<branch>refs/heads/releases</branch>                       
-					<includes>
-						<include>**/*</include>
-					</includes>
-					<!-- github repo name -->
-					<repositoryName>baidu_push_sdk_java</repositoryName>      
-					<!-- github username -->
-					<repositoryOwner>llv22</repositoryOwner>    
-				</configuration>
+				<!-- <configuration> <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/releases</altDeploymentRepository> 
+					</configuration> -->
 				<executions>
-					<!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->
 					<execution>
-						<goals>
-							<goal>site</goal>
-						</goals>
+						<id>deploy</id>
 						<phase>deploy</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
 					</execution>
 				</executions>
 			</plugin>
