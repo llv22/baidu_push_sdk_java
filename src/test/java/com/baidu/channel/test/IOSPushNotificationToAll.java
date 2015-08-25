@@ -41,8 +41,7 @@ public class IOSPushNotificationToAll {
 		// 2. build a BaidupushClient object to access released interfaces
 		BaiduPushClient pushClient = new BaiduPushClient(pair, BaiduPushConstants.CHANNEL_REST_URL);
 
-		// 3. register a YunLogHandler to get detail interacting information
-		// in this request.
+		// 3. register a YunLogHandler to get detail interacting information in this request.
 		pushClient.setChannelLogHandler(new CloudLogHandler() {
 			@Override
 			public void onHandle(CloudLogEvent event) {
@@ -52,11 +51,11 @@ public class IOSPushNotificationToAll {
 
 		try {
 			// 4. specify request arguments
-			// 创建IOS通知
+			// see : create iOS notification
 			JSONObject notification = new JSONObject();
 			JSONObject jsonAPS = new JSONObject();
 			jsonAPS.put("alert", "Hello Baidu Push");
-			jsonAPS.put("sound", "ttt"); // 设置通知铃声样式,例如"ttt"，用户自定义。
+			jsonAPS.put("sound", "ttt"); // setup for ringing style, for example "ttt", user defined
 			notification.put("aps", jsonAPS);
 			notification.put("key1", "value1");
 			notification.put("key2", "value2");
@@ -64,14 +63,12 @@ public class IOSPushNotificationToAll {
 			PushMsgToAllRequest request = new PushMsgToAllRequest()
 					.addMsgExpires(new Integer(3600)).addMessageType(1)
 					.addMessage(notification.toString())
-					.addSendTime(System.currentTimeMillis() / 1000 + 70) // 设置定时推送时间，必需超过当前时间一分钟，单位秒.实例2分钟后推送
+					.addSendTime(System.currentTimeMillis() / 1000 + 70) // setup of delay time for sending, must more than 1 minute, unit in second, here set for 70 seconds
 					.addDepolyStatus(DeployStatus.development.getValue()).addDeviceType(4);
 			// 5. http request
 			PushMsgToAllResponse response = pushClient.pushMsgToAll(request);
-			// Http请求结果解析打印
-			System.out.println("msgId: " + response.getMsgId() + ",sendTime: "
-					+ response.getSendTime() + ",timerId: "
-					+ response.getTimerId());
+			// Http response print out
+			System.out.println(String.format("msgId: %s ,sendTime: %d,timerId: %s", response.getMsgId(), response.getSendTime(), response.getTimerId()));
 		} catch (PushClientException e) {
 			if (BaiduPushConstants.ERROROPTTYPE) {
 				throw e;
@@ -82,9 +79,7 @@ public class IOSPushNotificationToAll {
 			if (BaiduPushConstants.ERROROPTTYPE) {
 				throw e;
 			} else {
-				System.out.println(String.format(
-						"requestId: %d, errorCode: %d, errorMessage: %s",
-						e.getRequestId(), e.getErrorCode(), e.getErrorMsg()));
+				System.err.println(String.format("requestId: %d, errorCode: %d, errorMessage: %s",e.getRequestId(), e.getErrorCode(), e.getErrorMsg()));
 			}
 		}
 	}
