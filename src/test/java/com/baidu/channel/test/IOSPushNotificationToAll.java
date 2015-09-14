@@ -33,10 +33,18 @@ public class IOSPushNotificationToAll {
 		}
 		
 		// 1. get apiKey and secretKey from developer console
-        String apiKey = defaultProps.getProperty("apiKey");
-        String secretKey = defaultProps.getProperty("secretKey");
+		String appidKey = defaultProps.getProperty("appidKey");
+		if(appidKey.equals("${appidKey}")) {
+			//TODO : not defined
+			appidKey = System.getProperty("appidKey");
+		}
+		String secretKey = defaultProps.getProperty("secretKey");
+		if(secretKey.equals("${secretKey}")) {
+			//TODO : not defined
+			secretKey = System.getProperty("secretKey");
+		}
         
-		PushKeyPair pair = new PushKeyPair(apiKey, secretKey);
+		PushKeyPair pair = new PushKeyPair(appidKey, secretKey);
 
 		// 2. build a BaidupushClient object to access released interfaces
 		BaiduPushClient pushClient = new BaiduPushClient(pair, BaiduPushConstants.CHANNEL_REST_URL);

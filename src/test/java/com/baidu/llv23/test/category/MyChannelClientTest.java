@@ -30,7 +30,7 @@ public class MyChannelClientTest {
 
 	@Test
 	@Category(com.baidu.llv23.test.category.LocalCloudPushInterface.class)
-	public void testPushBroadcastMessage()  throws FileNotFoundException, IOException, PushClientException, PushServerException {
+	public void testPushBroadcastMessage()  throws FileNotFoundException, IOException{
 		// see 1. ApiKey/SecretKey on developer platform
 		Properties defaultProps = new Properties();
 		try (FileInputStream in = new FileInputStream("src/main/resources/META-INF/application.properties")) {
@@ -38,10 +38,18 @@ public class MyChannelClientTest {
 		}
 
 		// 1. get apiKey and secretKey from developer console
-		String apiKey = defaultProps.getProperty("apiKey");
+		String appidKey = defaultProps.getProperty("appidKey");
+		if(appidKey.equals("${appidKey}")) {
+			//TODO : not defined
+			appidKey = System.getProperty("appidKey");
+		}
 		String secretKey = defaultProps.getProperty("secretKey");
+		if(secretKey.equals("${secretKey}")) {
+			//TODO : not defined
+			secretKey = System.getProperty("secretKey");
+		}
 
-		PushKeyPair pair = new PushKeyPair(apiKey, secretKey);
+		PushKeyPair pair = new PushKeyPair(appidKey, secretKey);
 
 		// 2. build a BaidupushClient object to access released interfaces
 		BaiduPushClient pushClient = new BaiduPushClient(pair,
@@ -58,7 +66,7 @@ public class MyChannelClientTest {
 		try {
 			PushMsgToAllRequest request = new PushMsgToAllRequest()
 					.addMsgExpires(new Integer(3600)).addMessageType(1)
-					.addMessage("{\"title\":\"iContests\",\"description\":\"New Contest is coming\"}")
+					.addMessage("{\"title\":\"iContests\",\"description\":\"New Contest is coming, Random\"}")
 					.addSendTime(System.currentTimeMillis() / 1000 + 65)
 					// 设置定时推送时间，必需超过当前时间一分钟，单位秒.实例2分钟后推送
 					.addDepolyStatus(DeployStatus.development.getValue())
@@ -69,16 +77,14 @@ public class MyChannelClientTest {
 			System.out.println("msgId: " + response.getMsgId() + ",sendTime: " + response.getSendTime() + ",timerId: " + response.getTimerId());
 		} catch (PushClientException e) {
 			if (BaiduPushConstants.ERROROPTTYPE) {
-				throw e;
-			} else {
 				e.printStackTrace();
-			}
+			} 
+			System.err.println("Client Push Error Happened");
 		} catch (PushServerException e) {
 			if (BaiduPushConstants.ERROROPTTYPE) {
-				throw e;
-			} else {
-				System.out.println(String.format("requestId: %d, errorCode: %d, errorMessage: %s",e.getRequestId(), e.getErrorCode(), e.getErrorMsg()));
-			}
+				e.printStackTrace();
+			} 
+			System.err.println(String.format("Server Push Received Error Happended, requestId: %d, errorCode: %d, errorMessage: %s",e.getRequestId(), e.getErrorCode(), e.getErrorMsg()));
 		}
 
 	}

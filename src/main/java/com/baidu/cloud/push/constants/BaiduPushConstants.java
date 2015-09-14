@@ -90,6 +90,8 @@ public class BaiduPushConstants {
 	//------------------ host name -----------------------------------
     //域名：api.push.baidu.com、api.tuisong.baidu.com、channel.api.duapp.com(老域名，建议使用前两个域名)
 	public static final String CHANNEL_REST_URL = "api.tuisong.baidu.com";
+//	public static final String CHANNEL_REST_URL = "api.push.baidu.com";
+//	public static final String CHANNEL_REST_URL = "channel.api.duapp.com";
 	//------------------ http request error, operation type ----------
 	public static final boolean ERROROPTTYPE = false;
 	                                          // true -- throw exception, developer handle it according to 'errorCode' and 'errorMsg';
