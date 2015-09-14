@@ -66,7 +66,7 @@ public class MyChannelClientTest {
 		try {
 			PushMsgToAllRequest request = new PushMsgToAllRequest()
 					.addMsgExpires(new Integer(3600)).addMessageType(1)
-					.addMessage("{\"title\":\"iContests\",\"description\":\"New Contest is coming, Random\"}")
+					.addMessage("{\"title\":\"iContests\",\"description\":\"New Contest is coming\"}")
 					.addSendTime(System.currentTimeMillis() / 1000 + 65)
 					// 设置定时推送时间，必需超过当前时间一分钟，单位秒.实例2分钟后推送
 					.addDepolyStatus(DeployStatus.development.getValue())
